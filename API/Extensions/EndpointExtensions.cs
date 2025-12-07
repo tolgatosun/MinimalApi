@@ -1,5 +1,7 @@
 ﻿using API.Endpoints;
 using API.Filter;
+using FluentValidation;
+using Model.Request;
 
 namespace API.Extensions
 {
@@ -10,7 +12,7 @@ namespace API.Extensions
         {
             app.MapPost("/users", UserEndpoints.CreateUser)
                .AddEndpointFilter<GlobalExceptionFilter>();
-            
+             
             app.MapGet("/users/{id}", UserEndpoints.GetUser);
         }
     }

@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Model;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
+using Model.Entities;
+using Model.Request;
 using System.Net;
 
 namespace API.Endpoints
@@ -8,14 +10,11 @@ namespace API.Endpoints
     {
         private readonly static List<User> _users = new List<User>();
 
-        public static async Task<IResult> CreateUser([FromBody] User user)
-        {
-            if (user == null) throw new Exception("error");
-
-            if (user.Id < 0 || string.IsNullOrEmpty(user.UserName))
-            {
-                return Results.Json(HttpStatusCode.BadRequest);
-            }
+        public static async Task<IResult> CreateUser([FromBody] CreateUserRequest user, [FromServices] IValidator<CreateUserRequest> validator)
+        { 
+            var result = await validator.ValidateAsync(user);
+            if (!result.IsValid)
+                return Results.BadRequest(result.Errors);
 
             user.CreateDatetime = DateTime.Now;
             _users.Add(user);
