@@ -4,7 +4,7 @@ Bu repo, **.NET 8 Minimal API** kullanılarak hazırlanmış, production senaryo
 
 Amaç:
 - Minimal API ile **doğru mimari kullanımın nasıl olması gerektiğini göstermek**
-- Async kullanım, DbContext yönetimi ve endpoint tasarımı için **referans bir yapı sunmak**
+- Async kullanım, endpoint tasarımı için **referans bir yapı sunmak**
 - Gerçek hayatta karşılığı olan, sade ama disiplinli bir API örneği paylaşmak
 
 ---
